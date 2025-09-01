@@ -1,9 +1,11 @@
 Calificaciones = []
-for i in range(11):
+numero_de_estudiantes = int(input("Ingrese el número de estudiantes: "))
+for i in range(numero_de_estudiantes):
     Calificaciones.append(int(input("Ingrese la calificación del estudiante: ")))
 print('Promedio: ', sum(Calificaciones)/len(Calificaciones))
 print('Calificación más alta: ', max(Calificaciones))
 print('Calificación más baja: ', min(Calificaciones))
+print('\n')
 aprobados = []
 reprobados = []
 aprobados = [x for x in Calificaciones if x >= 60]
