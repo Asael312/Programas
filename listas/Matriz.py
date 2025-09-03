@@ -22,7 +22,8 @@ Calificaciones = [
    ['Jose',60,75,80],
    ['Elena',85,60,70]
 ]
-print("Nombre", 'P1', 'P2', 'P3', 'Promedio')
+print("{:<10} {:>4} {:>4} {:>4} {:>9}".format("Nombre", "P1", "P2", "P3", "Promedio"))
+print("-" * 35)
 for alumno in Calificaciones:
     sum=0
     promedio=0
@@ -36,7 +37,9 @@ for alumno in Calificaciones:
             mejor_promedio=promedio
             mejor_nombre=Nombre
     alumno.append(promedio)
-    print(alumno,'\n')
+    for n in alumno:
+        print(n,sep=' ',end=' ')
+    print()
 print('===Resumen===')
 print('reprobados: ',reprobados)
 print('Mejor promedio: ',mejor_promedio, 'Alumno: ', mejor_nombre)
