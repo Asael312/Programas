@@ -28,18 +28,20 @@ def Agregar_contactos(lista):
     lista.append(contacto)
         
 def Mostrar_contactos(lista):
+    print('--- Lista de contactos ---')
     for contacto in lista:
-        print('Nombre:','Telefono','Correo')
-        print(contacto[0],contacto[1],contacto[2],sep='   ')
-
+        print(f'Nombre: {contacto[0]:<15} Telefono: {contacto[1]:<15} Correo: {contacto[2]:<15}')
+    print('-'*50)
 def Buscar_contacto(lista):
     nombre=input('Ingrese el nombre del contacto a buscar: ')
     for contacto in lista:
         if contacto[0]==nombre:
             print('Contacto encontrado:')
-            print(contacto[0],contacto[1],contacto[2],sep='   ')
+            print(f'Nombre: {contacto[0]:<15} Telefono: {contacto[1]:<15} Correo: {contacto[2]:<15}')
+            print('-'*50)
             return
     print('Contacto no encontrado')
+    print('-'*50)
 
 lista_contactos=[]      
 Opcion=0
@@ -48,10 +50,7 @@ while Opcion!=4:
     Opcion=int(input('Ingrese una opcion: '))
     if Opcion==1:
         Agregar_contactos(lista_contactos)
-        breakpoint()
     elif Opcion==2:
         Mostrar_contactos(lista_contactos)
-        breakpoint()
     elif Opcion==3:
         Buscar_contacto(lista_contactos)
-        breakpoint()
