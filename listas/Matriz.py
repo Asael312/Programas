@@ -37,9 +37,7 @@ for alumno in Calificaciones:
             mejor_promedio=promedio
             mejor_nombre=Nombre
     alumno.append(promedio)
-    for n in alumno:
-        print(n,sep=' ',end=' ')
-    print()
+    print("{:<10} {:>4} {:>4} {:>4} {:>9.2f}".format(alumno[0], alumno[1], alumno[2], alumno[3], alumno[4]))
 print('===Resumen===')
 print('reprobados: ',reprobados)
 print('Mejor promedio: ',mejor_promedio, 'Alumno: ', mejor_nombre)
