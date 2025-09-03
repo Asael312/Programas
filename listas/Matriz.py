@@ -25,19 +25,18 @@ Calificaciones = [
 print("{:<10} {:>4} {:>4} {:>4} {:>9}".format("Nombre", "P1", "P2", "P3", "Promedio"))
 print("-" * 35)
 for alumno in Calificaciones:
-    sum=0
-    promedio=0
-    for i in range (1,len(alumno)):
-        sum+= alumno[i]
-        promedio=round(sum/(len(alumno)-1),2)
-        Nombre=alumno[0]
-        if promedio < 70:
-            reprobados+=1
-        if mejor_promedio < promedio:
-            mejor_promedio=promedio
-            mejor_nombre=Nombre
-    alumno.append(promedio)
-    print("{:<10} {:>4} {:>4} {:>4} {:>9.2f}".format(alumno[0], alumno[1], alumno[2], alumno[3], alumno[4]))
-print('===Resumen===')
-print('reprobados: ',reprobados)
-print('Mejor promedio: ',mejor_promedio, 'Alumno: ', mejor_nombre)
+    califs = alumno['Calificaciones']
+    promedio = round(sum(califs) / len(califs), 2)
+    alumno['Promedio'] = promedio
+    if promedio < 70:
+        reprobados += 1
+    if mejor_promedio < promedio:
+        mejor_promedio = promedio
+        mejor_nombre = alumno['Nombre']
+    print("{:<10} {:>4} {:>4} {:>4} {:>9.2f}".format(
+        alumno['Nombre'], califs[0], califs[1], califs[2], promedio
+    ))
+
+print("\n=== Resumen ===")
+print(f"Reprobados: {reprobados}")
+print(f"Mejor promedio: {mejor_promedio:.2f}  Alumno: {mejor_nombre}")
