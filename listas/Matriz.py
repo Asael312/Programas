@@ -10,18 +10,19 @@
 #    fila.append(Matriz_A[i][n]+Matriz_B[i][n])
 #    print(fila)
 
-#for f in range (3):
-#   print(Matriz2[f][f])
-reprobados=0
-mejor_nombre=''
-mejor_promedio=-1
+
+#for f in range (3):#   print(Matriz2[f][f])
 Calificaciones = [
-   ['Anna',85,90,78],
-   ['Luis',70,88,95],
-   ['Maria',100,98,95],
-   ['Jose',60,75,80],
-   ['Elena',85,60,70]
+    {'Nombre': 'Anna', 'Calificaciones': [85, 90, 78]},
+    {'Nombre': 'Luis', 'Calificaciones': [70, 88, 95]},
+    {'Nombre': 'Maria', 'Calificaciones': [100, 98, 95]},
+    {'Nombre': 'Jose', 'Calificaciones': [60, 75, 80]},
+    {'Nombre': 'Elena', 'Calificaciones': [85, 60, 70]}
 ]
+
+reprobados = 0
+mejor_nombre = ''
+mejor_promedio = -1
 print("{:<10} {:>4} {:>4} {:>4} {:>9}".format("Nombre", "P1", "P2", "P3", "Promedio"))
 print("-" * 35)
 for alumno in Calificaciones:
