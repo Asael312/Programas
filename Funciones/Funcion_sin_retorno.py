@@ -26,6 +26,7 @@ def Agregar_contactos(lista):
     contacto.append(telefono)
     contacto.append(correo)
     lista.append(contacto)
+    print('\n','Contacto agregado exitosamente')
         
 def Mostrar_contactos(lista):
     print('--- Lista de contactos ---')
