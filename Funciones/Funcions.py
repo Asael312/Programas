@@ -18,11 +18,10 @@ def Mostrar_contactos(lista):
     print('--- Lista de contactos ---')
     for contacto in lista:
         layout_contacto(contacto)
-    print('-'*50)
     
 def layout_contacto(contacto):
-            print(f'Nombre: {contacto[0]:<15} Telefono: {contacto[1]:<15} Correo: {contacto[2]:<15}')
-            print('-'*50)
+    print(f'Nombre: {contacto[0]:<15} Telefono: {contacto[1]:<15} Correo: {contacto[2]:<15}')
+    print('-'*50)
 
 def Buscar_contacto(lista):
     nombre=input('Ingrese el nombre del contacto a buscar: ')
