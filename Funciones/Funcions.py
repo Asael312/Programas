@@ -49,3 +49,12 @@ def Buscar_contacto(lista):
 #    lista.sort(reverse=True)
 #    print(lista)
 #Lista()
+def menu():
+    print('--- Calculo de areas ---','1. Area del cuadrado','2. Area del rectangulo','3. Area del circulo','Salir',sep='\n')
+    return input('Ingrese una opcion: ')
+def area_cuadrado(lado):
+    return lado*lado
+def area_rectangulo(base,altura):
+    return base*altura
+def area_circulo(radio):
+    return 3.14*radio*radio
