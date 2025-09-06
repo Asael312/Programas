@@ -18,36 +18,37 @@ def Insertar_dipositivo(lista_dispositivos):
     return costo_por_kwh
 
 def CalcularConsumo(dispositivo):
-        consumo = (dispositivo[1] * dispositivo[2] )
+        consumo = (dispositivo[1] * dispositivo[2] )/1000
         dispositivo.append(consumo)
 
 def Consumo_total(lista_dispositivos, costo_por_kwh):
     consumo_total = sum(dispositivo[3] for dispositivo in lista_dispositivos)
-    costo_total = consumo_total * costo_por_kwh
-    print(f'\nConsumo mensual total: {consumo_total:.2f} kWh')
-    print(f'Costo mensual total: ${costo_total:.2f}')
+    costo_total = consumo_total * costo_por_kwh * 30
+    print('\nConsumo mensual total: ', str(consumo_total) + 'kWh')
+    print('Costo mensual total:',' $'+ str(round(costo_total,2)))
 def BuscarDispositivo(lista_dispositivos):
     nombre = input('Ingrese el nombre del dispositivo a buscar: ')
     for dispositivo in lista_dispositivos:
         if dispositivo[0] == nombre:
             print('Dispositivo encontrado:')
             CalcularConsumo(dispositivo)
-            print('Nombre: ', dispositivo[0], 'Consumo(W): ', dispositivo[1], 'Horas de uso por dia: ', dispositivo[2],' Consumo mensual(kWh): ', dispositivo[3], 'Costo mensual: ', dispositivo[4])
+            print('Nombre: ', dispositivo[0], 'Consumo(W): ', dispositivo[1], 'Horas de uso por dia: ', dispositivo[2],'Consumo(kWh): ', dispositivo[3],sep='\n')
             print('-'*80)
             return
     print("Nombre no encontrado")
 
 def MostrarDispositivos(lista_dispositivos):
     print('--- Lista de dispositivos ---')
-    print('Nombre     Consumo(W)    Horas de uso por dia    Consumo (kWh)')
+    print('Nombre       Consumo(W)   Horas de uso por dia    Consumo (kWh)')
     for dispositivo in lista_dispositivos:
         for dato in dispositivo:
-            print(f'{dato:<17}', end=' ')
+            print(dato,'\t'*1, end=' ')
         print()
     print('-'*80)
 Dispositivos = []
 opcion = ' '
 costo_por_kwh = Insertar_dipositivo(Dispositivos)
+MostrarDispositivos(Dispositivos)
 while opcion != '4':
     Menu()
     opcion= input('Seleccione una opcion: ')
