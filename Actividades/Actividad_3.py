@@ -19,69 +19,63 @@ def Insertar_dipositivo(lista_dispositivos):
     return costo_por_kwh
 
 def CalcularConsumo(dispositivo, costo_por_kwh):
-    consumo = round((dispositivo[1] * dispositivo[2]) / 1000, 2)
-    if len(dispositivo) < 3:
-        dispositivo[3] = consumo
-    else:
-        dispositivo.append(consumo)
-    if len(dispositivo) < 4:
-        dispositivo[4] = round(consumo * costo_por_kwh, 2)
-    else:
-        dispositivo.append(round(consumo * costo_por_kwh, 2))
-    # El costo mensual se calcula aparte, no se almacena aquí
+    kWh_dia = round((dispositivo[1] * dispositivo[2]) / 1000, 2)
+    kWh_mes = round(kWh_dia * 30, 2)
+    costo_mes = round(kWh_mes * costo_por_kwh, 2)
+    return kWh_dia, kWh_mes, costo_mes
 
 def Consumo_mensual_total(lista_dispositivos, costo_por_kwh):
-    consumo_total_dia = sum(dispositivo[3] for dispositivo in lista_dispositivos)
-    consumo_total_mes = round(consumo_total_dia * 30, 2)
-    costo_total_mes = round(consumo_total_mes * costo_por_kwh, 2)
+    consumo_total_mes = sum(CalcularConsumo(d, costo_por_kwh)[1] for d in lista_dispositivos)
+    costo_total_mes = sum(CalcularConsumo(d, costo_por_kwh)[2] for d in lista_dispositivos)
     print('\nConsumo mensual total: ', consumo_total_mes, 'kWh')
     print('Costo mensual total: $', costo_total_mes)
     return consumo_total_mes, costo_total_mes
 
-def BuscarDispositivo(lista_dispositivos):
+def BuscarDispositivo(lista_dispositivos, costo_por_kwh):
     nombre = input('Ingrese el nombre del dispositivo a buscar: ')
     for dispositivo in lista_dispositivos:
         if dispositivo[0] == nombre:
             print('Dispositivo encontrado:')
             print('Nombre: ', dispositivo[0])
-            print('Consumo: ', round(dispositivo[1],2), 'W')
+            print('W: ', round(dispositivo[1],2))
             print('Horas de uso por día: ', Horas_y_minutos(dispositivo[2]))
-            print('Consumo diario: ', round(dispositivo[3],2), 'kWh')
+            kWh_dia, kWh_mes, costo_mes = CalcularConsumo(dispositivo, costo_por_kwh)
+            print('Consumo diario: ', round(kWh_dia,2), 'kWh')
+            print('Consumo mensual: ', round(kWh_mes,2), 'kWh')
+            print('Costo mensual: $', round(costo_mes,2))
             print('-'*40)
             return
     print("Nombre no encontrado")
 def Horas_y_minutos(horas):
     h = int(horas)
     m = int((horas - h) * 60)
-    return f"{h} horas y {m} minutos"
+    return str(h) + "h" + str(m) + "min"
 
-def MostrarDispositivos(lista_dispositivos):
+def MostrarDispositivos(lista_dispositivos, costo_por_kwh):
     print('--- Lista de dispositivos ---')
-    print('{:<15} {:>12} {:>18} {:>16}'.format('Nombre', 'Consumo(W)', 'Horas/día', 'Consumo(kWh)'))
+    print('Nombre', 'W', 'h/día', 'kWh/día','kWh/mes','$/mes' ,sep=' '*8)
     for dispositivo in lista_dispositivos:
-        print('{:<15} {:>12.2f} {:>18} {:>16.2f}'.format(
-            dispositivo[0], dispositivo[1], Horas_y_minutos(dispositivo[2]), dispositivo[3]
-        ))
+        kWh_dia, kWh_mes, costo_mes = CalcularConsumo(dispositivo, costo_por_kwh)
+        print(dispositivo[0], dispositivo[1], Horas_y_minutos(dispositivo[2]),'  ', str(kWh_dia),'  ', str(kWh_mes), '  ', str(costo_mes), sep=' '*5)
     print('-'*65)
 
 Dispositivos = []
 opcion = ' '
 costo_por_kwh = Insertar_dipositivo(Dispositivos)
-MostrarDispositivos(Dispositivos)
+MostrarDispositivos(Dispositivos, costo_por_kwh)
 while opcion != '4':
     Menu()
     opcion = input('Seleccione una opcion: ')
 
     if opcion == '1':
-        MostrarDispositivos(Dispositivos)
+        MostrarDispositivos(Dispositivos, costo_por_kwh)
     elif opcion == '2':
-        BuscarDispositivo(Dispositivos)
+        BuscarDispositivo(Dispositivos, costo_por_kwh)
     elif opcion == '3':
-        MostrarDispositivos(Dispositivos)
+        MostrarDispositivos(Dispositivos, costo_por_kwh)
         consumo_mensual, costo_mensual = Consumo_mensual_total(Dispositivos, costo_por_kwh)
     elif opcion == '4':
         print('---Resumen final---')
         print('Consumo mensual total: ', consumo_mensual, 'kWh')
         print('Costo mensual total: $', costo_mensual)
         print('Saliendo del programa...')
-    
