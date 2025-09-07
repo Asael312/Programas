@@ -75,6 +75,7 @@ while opcion != '4':
         MostrarDispositivos(Dispositivos, costo_por_kwh)
         consumo_mensual, costo_mensual = Consumo_mensual_total(Dispositivos, costo_por_kwh)
     elif opcion == '4':
+        consumo_mensual, costo_mensual = Consumo_mensual_total(Dispositivos, costo_por_kwh)
         print('---Resumen final---')
         print('Consumo mensual total: ', consumo_mensual, 'kWh')
         print('Costo mensual total: $', costo_mensual)
