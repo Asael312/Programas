@@ -1,0 +1,49 @@
+def Mostrar_menu():
+    print('--- Agenda de contactos ---','1. Agregar contacto','2. Mostrar contactos','3. Buscar contacto','4. Salir',sep='\n')
+    return int(input('Ingrese una opcion: '))
+
+def Agregar_contactos(contacto, lista):
+    lista.append(contacto)
+    print('\n','Contacto agregado exitosamente')
+    layout_contacto(contacto)
+        
+def Mostrar_contactos(lista):
+    print('--- Lista de contactos ---')
+    for contacto in lista:
+        layout_contacto(contacto)
+    
+def layout_contacto(contacto):
+    print('Nombre:', contacto[0] ,'       ','Telefono:', contacto[1], '    ','Correo:', contacto[2])
+    print('-'*50)
+
+def Buscar_contacto(lista):
+    dato = input('Ingrese el nombre del contacto a buscar: ')
+    encontrados = False
+    for contacto in lista:
+        if contacto[0] == dato or contacto[1] == dato or contacto[2] == dato:
+            print('Contacto encontrado:')
+            layout_contacto(contacto)
+            encontrados = True
+    if not encontrados:
+        print('Contacto no encontrado')
+        print('-'*50)
+def confirmar_contacto(lista):
+    nombre=input('Ingrese el nombre del contacto: ')
+    telefono=input('Ingrese el telefono del contacto: ')
+    correo=input('Ingrese el correo del contacto: ')
+    contacto=(nombre,telefono,correo)
+    if contacto in lista:
+        print('El contacto ya existe:')
+        layout_contacto(contacto)
+    else:
+        Agregar_contactos(contacto, lista)
+lista_contactos=[]      
+Opcion=0
+while Opcion!=4: 
+    Opcion = Mostrar_menu()
+    if Opcion==1:
+        confirmar_contacto(lista_contactos)
+    elif Opcion==2:
+        Mostrar_contactos(lista_contactos)
+    elif Opcion==3:
+        Buscar_contacto(lista_contactos)
