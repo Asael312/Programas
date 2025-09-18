@@ -58,3 +58,14 @@ def area_rectangulo(base,altura):
     return base*altura
 def area_circulo(radio):
     return 3.14*radio*radio
+# Determina el largo de una palabra
+def palabra_mas_larga(palabras):
+    if not palabras:
+        return None, 0
+    palabra = max(palabras, key=len)# palabras es la lista, la key compara todas con su longitut y max escoge el mas largo
+    Longitud = len(palabra) # mide la palabra
+    return Longitud
+def nombre_mas_largo(lista):
+    nombre_mas_largo = max([datos[0] for datos in lista], key=len)# palabras es la lista, la key compara todas con su longitut y max escoge el mas largo
+    Longitud = len(nombre_mas_largo) # mide la palabra
+    return Longitud

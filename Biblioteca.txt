@@ -1,0 +1,4 @@
+Titulo                         Autor                     Año    Genero              
+1                              1                         1      1                   
+asael                          asel                      1890   fantasia            
+aleluya                        froid                     1980   psico               

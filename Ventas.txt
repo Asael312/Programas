@@ -1,0 +1,5 @@
+Juan,Computadora,15000
+Ana,Mouse,300
+Luis,Teclado,500
+Ana,Laptop,12000
+Juan,Monitor,2500
