@@ -66,9 +66,12 @@ def AgregarProducto(diccionario, archivo):
     except ValueError: 
         print('Stock y precio deben ser numéricos.')
 
-def MostrarInventario(diccionario):
+def MostrarInventario(diccionario,archivo):
     if not diccionario:
         print('Inventario vacío.')
+        opcion = input('¿Desea agregar un producto? (si/no): ')
+        if opcion == 'si':
+            AgregarProducto(diccionario,archivo)
     else:
         print('\n--- Inventario ---')
         for nombre, datos in diccionario.items(): 
@@ -180,7 +183,7 @@ while intentos < 3 and Contraseña != 'OXO':
         while Opcion != 8:
             Opcion=Menu()
             if Opcion == 1:
-                MostrarInventario(Productos)
+                MostrarInventario(Productos,nomrbre_archivo)
             elif Opcion == 2:
                 AgregarProducto(Productos, nomrbre_archivo)
             elif Opcion == 3:
