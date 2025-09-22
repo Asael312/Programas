@@ -127,7 +127,7 @@ def buscar():
 def Suma_total():
     lista = Clientes()
     total = sum(cliente[2] for cliente in lista)
-    print(f"\nEl costo general de clientes es de: {total:.2f}$ \n")
+    print(f"\nTotal general: ${total:.2f} \n")
  
 while True:
     opcion = Menu()
